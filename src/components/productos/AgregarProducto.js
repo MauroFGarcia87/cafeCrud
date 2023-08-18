@@ -27,7 +27,7 @@ const AgregarProducto = (props) => {
         precioProducto,
         categoria,
       };
-      // console.log(productoNuevo);
+      console.log(productoNuevo);
       // enviar el objeto producto a la api POST
       try{
         const parametros = {
@@ -38,7 +38,7 @@ const AgregarProducto = (props) => {
           body: JSON.stringify(productoNuevo)
         }
         const respuesta = await fetch(URL,parametros);
-        // console.log(respuesta);
+        console.log(respuesta);
         if(respuesta.status === 201){
           // mostrar al usuario un msj de operacion exitosa
           Swal.fire(

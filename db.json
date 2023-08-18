@@ -6,7 +6,6 @@
       "precioProducto": "40",
       "categoria": "bebida-caliente"
     },
-
     {
       "id": 2,
       "nombreProducto": "cafe",
@@ -18,7 +17,18 @@
       "nombreProducto": "medialuna",
       "precioProducto": "80",
       "categoria": "dulce"
+    },
+    {
+      "nombreProducto": "Cafe Cuba",
+      "precioProducto": "1500",
+      "categoria": "bebida-caliente",
+      "id": 4
+    },
+    {
+      "nombreProducto": "Cerveza",
+      "precioProducto": "500",
+      "categoria": "bebida-fria",
+      "id": 5
     }
   ]
-  
 }
