@@ -1,12 +1,6 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombreProducto": "te manzanilla",
-      "precioProducto": "40",
-      "categoria": "bebida-caliente"
-    },
-    {
       "id": 2,
       "nombreProducto": "cafe",
       "precioProducto": "50",
@@ -25,21 +19,15 @@
       "id": 4
     },
     {
-      "nombreProducto": "Cerveza",
-      "precioProducto": "500",
-      "categoria": "bebida-fria",
-      "id": 5
-    },
-    {
       "nombreProducto": "Licuado",
       "precioProducto": "600",
       "categoria": "bebida-fria",
       "id": 6
     },
     {
-      "nombreProducto": "Leche chocolatada",
-      "precioProducto": "200",
-      "categoria": "bebida-caliente",
+      "nombreProducto": "Chatita",
+      "precioProducto": "100",
+      "categoria": "salado",
       "id": 7
     }
   ]
