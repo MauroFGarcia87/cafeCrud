@@ -29,6 +29,18 @@
       "precioProducto": "500",
       "categoria": "bebida-fria",
       "id": 5
+    },
+    {
+      "nombreProducto": "Licuado",
+      "precioProducto": "600",
+      "categoria": "bebida-fria",
+      "id": 6
+    },
+    {
+      "nombreProducto": "Leche chocolatada",
+      "precioProducto": "200",
+      "categoria": "bebida-caliente",
+      "id": 7
     }
   ]
 }
