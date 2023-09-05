@@ -1,76 +1,82 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { campoRequerido, rangoPrecio } from "../helpers/helpers";
+import { useNavigate } from "react-router-dom";
+
 
 const EditarProducto = (props) => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
-  const [categoria, setCategoria] = useState('');
+  const [categoria, setCategoria] = useState("");
   //crear variables de referencias
-  const nombreProductoRef = useRef('');
+  const nombreProductoRef = useRef("");
   const precioProductoRef = useRef(0);
+  const navegacion = useNavigate();
 
   const URL = process.env.REACT_APP_API_URL + "/" + id;
 
-  useEffect(async () => {
-    try {
-      //consultar 1 producto en particular, peticion GET
-      const respuesta = await fetch(URL);
-      // console.log(respuesta);
-      if (respuesta.status === 200) {
-        const dato = await respuesta.json();
-        // console.log(dato)
-        setProducto(dato);
-        setCategoria(dato.categoria);
+  useEffect(() => {
+    async function consApi() {
+      try {
+        //consultar 1 producto en particular, peticion GET
+        const respuesta = await fetch(URL);
+        //console.log(respuesta);
+        if (respuesta.status === 200) {
+          const dato = await respuesta.json();
+          //console.log(dato)
+          setProducto(dato);
+          setCategoria(dato.categoria);
+        }
+      } catch (error) {
+        console.log(error);
+        //mostrar un mensaje al usuario
       }
-    } catch (error) {
-      console.log(error);
-      //mostrar un mensaje al usuario
     }
+    consApi();
   }, []);
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(nombreProductoRef)
-    // console.log(nombreProductoRef.current.value)
-    //validar los datos
-    if(campoRequerido(nombreProductoRef.current.value) && rangoPrecio(precioProductoRef.current.value) && campoRequerido(categoria)){
-      //crear un objeto y enviarlo a la api
+    //Valiadar caompo
+    if (
+      campoRequerido(nombreProductoRef.current.value) &&
+      rangoPrecio(precioProductoRef.current.value) &&
+      campoRequerido(categoria)
+    ) {
+      //Crear el objeto
       const productoModificado = {
         nombreProducto: nombreProductoRef.current.value,
         precioProducto: precioProductoRef.current.value,
-        categoria
+        categoria: categoria
+      }
+      //console.log(productoModificado);
+      //Pedir Modificar datos a la API, con peticion Put
+      try {
+        const respuesta = await fetch(URL, {
+          method: "PUT",
+            headers: {
+              "Content-Type": "application/json"              
+            },
+            body: JSON.stringify(productoModificado)
+          });
+          console.log(respuesta);
+          if(respuesta.status === 200){
+            Swal.fire(
+              'Producto Modificado', 'El producto fue correctamente modificado', 'success'
+            )
+            props.consultarAPI();
+            navegacion('/productos'); 
+          }
+      } catch (error) {
+        console.log('Error');
       }
 
-      console.log(productoModificado)
-      // pedir modificar datos a la api, peticion PUT
-      try{
-        const respuesta = await fetch(URL,{
-          method:"PUT",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify(productoModificado)
-        })
-
-        console.log(respuesta);
-        if(respuesta.status === 200){
-          Swal.fire(
-            'Producto modificado','EL producto fue correctamente actualizado','success'
-          )
-          props.consultarAPI();
-        }
-
-      }catch(error){
-        console.log(error);
-        //mostrar msj al usuario
-      }
     }else{
-      console.log('error al validar los campos')
-      //mostrar mensaje de error
+      console.log('Error al validar los campos')
     }
-
-  }
+  };
 
   return (
     <Container>
@@ -98,7 +104,10 @@ const EditarProducto = (props) => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Label>Categoria*</Form.Label>
-          <Form.Select value={categoria} onChange={(e)=>setCategoria(e.target.value)}>
+          <Form.Select
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
+          >
             <option value="">Seleccione una opcion</option>
             <option value="bebida-caliente">Bebida Caliente</option>
             <option value="bebida-fria">Bebida Fria</option>

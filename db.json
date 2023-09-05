@@ -1,22 +1,16 @@
 {
   "productos": [
     {
-      "id": 2,
       "nombreProducto": "cafe",
-      "precioProducto": "50",
-      "categoria": "bebida-caliente"
-    },
-    {
-      "id": 3,
-      "nombreProducto": "medialuna",
-      "precioProducto": "80",
-      "categoria": "dulce"
-    },
-    {
-      "nombreProducto": "Cafe Cuba",
-      "precioProducto": "1500",
+      "precioProducto": "350",
       "categoria": "bebida-caliente",
-      "id": 4
+      "id": 2
+    },
+    {
+      "nombreProducto": "medialuna",
+      "precioProducto": "200",
+      "categoria": "salado",
+      "id": 3
     },
     {
       "nombreProducto": "Licuado",
@@ -25,8 +19,8 @@
       "id": 6
     },
     {
-      "nombreProducto": "Chatita",
-      "precioProducto": "100",
+      "nombreProducto": "Torta con chicarron",
+      "precioProducto": "250",
       "categoria": "salado",
       "id": 7
     }
