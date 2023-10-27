@@ -2,7 +2,7 @@
   "productos": [
     {
       "nombreProducto": "cafe",
-      "precioProducto": "350",
+      "precioProducto": "10",
       "categoria": "bebida-caliente",
       "id": 2
     },
@@ -23,6 +23,12 @@
       "precioProducto": "250",
       "categoria": "salado",
       "id": 7
+    },
+    {
+      "nombreProducto": "vino",
+      "precioProducto": "100",
+      "categoria": "bebida-fria",
+      "id": 8
     }
   ]
 }
